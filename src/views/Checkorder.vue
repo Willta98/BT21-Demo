@@ -72,7 +72,7 @@
             <td>
               <span v-if="!order.is_paid">Not paid yet</span>
               <span v-else class="text-success">Payment Completed
-              <a href="/" class="btn btn-dark ml-5"  style="font-size:13px;">Back</a>
+              <a href="https://willta98.github.io/BT21-Demo/dist/#/" class="btn btn-dark ml-5"  style="font-size:13px;">Back</a>
               </span>
             </td>
           </tr>

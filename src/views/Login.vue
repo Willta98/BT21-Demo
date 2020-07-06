@@ -15,7 +15,7 @@
                <label for="inputPassword" class="sr-only">Password</label>
                <input type="password" id="inputPassword" v-model="user.password" class="form-control" placeholder="Password" required>
                <button class="btn btn-primary mt-3 btn-block" type="submit"  @keyup.enter="signin()" @click="signin()">Sigh in</button>
-               <a href="/" class="btn btn-outline-primary mt-3 btn-block" type="submit">Back</a>
+               <a href="https://willta98.github.io/BT21-Demo/dist/#/" class="btn btn-outline-primary mt-3 btn-block" type="submit">Back</a>
                <div class="mt-1">© 2020 Welcome to BT21</div>
             </div>
           </div>

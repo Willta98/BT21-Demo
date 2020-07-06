@@ -32,7 +32,7 @@
                   </div>
                   <button type="buttom" class="btn btn-lg btn-dark btn-size mt-4 mb-4 mr-5" 
                     @click="addCar(product.id, product.num)">ADD TO CART</button>
-                  <a href="/" class="btn btn-outline-dark btn-size">back</a>
+                  <a href="https://willta98.github.io/BT21-Demo/dist/#/" class="btn btn-outline-dark btn-size">back</a>
               </div>
               </div>
             </div>
