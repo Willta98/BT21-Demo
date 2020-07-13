@@ -6,8 +6,8 @@ import VueAxios from 'vue-axios'
 import 'bootstrap'
 import VeeValidate from 'vee-validate';
 import zhTW from 'vee-validate/dist/locale/zh_TW';
-import currencyFilter from './components/filters/currency';
-import timeFilter from './components/filters/time';
+import currencyFilter from './filters/currency';
+import timeFilter from './filters/time';
 import store from './store'
 Vue.config.productionTip = false
 
@@ -31,14 +31,11 @@ new Vue({
 
 
 router.beforeEach((to, from, next) => {
-  console.log('to', to, 'form', from, 'next', next)
-
+  // console.log('to', to, 'form', from, 'next', next)
   if (to.meta.requiresAuth) {
     const api = `${process.env.VUE_APP_APIPATH}/api/user/check`;
     axios.post(api).then((response) => {
-      console.log(response.data)
       if (response.data.success) {
-        console.log('目前正在登入中')
         next();
       }
       else {

@@ -1,16 +1,16 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Main from '@/views/Main'
-import Shop from '@/views/Shop'
-import Login from '@/views/Login'
-import Control from '@/views/Control'
-import Order from '@/views/ControlOrder'
-import Coupon from '@/views/ControlCoupon'
-import Product from '@/views/ControlProduct'
-import product from '@/views/Product'
-import custormerOrder from '@/views/CustormerOrder'
-import ordercreat from '@/views/Ordercreat'
-import checkorder from '@/views/Checkorder'
+import Main from '@/views/frontend/Main'
+import Shop from '@/views/frontend/Shop'
+import Login from '@/views/frontend/Login'
+import Control from '@/views/frontend/Control'
+import Order from '@/views/backend/ControlOrder'
+import Coupon from '@/views/backend/ControlCoupon'
+import Product from '@/views/backend/ControlProduct'
+import product from '@/views/frontend/Product'
+import custormerOrder from '@/views/frontend/CustormerOrder'
+import ordercreat from '@/views/frontend/Ordercreat'
+import checkorder from '@/views/frontend/Checkorder'
 
 
 Vue.use(Router)
@@ -18,6 +18,10 @@ Vue.use(Router)
 export default new Router({
   linkActiveClass: 'active',
   routes: [
+    {
+      path: '*',
+      redirect: '/',
+    },
     {
       path: '/',
       name: 'Main',

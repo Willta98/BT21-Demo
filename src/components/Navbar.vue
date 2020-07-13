@@ -1,11 +1,15 @@
 <template>
-    <div>
-      <div id="loading">
-            <img src="https://thumbs.gfycat.com/SoggyFoolhardyCopperbutterfly-small.gif" alt="loading.." width="300">
-        </div>
-      <nav class="navbar navbar-expand-lg navbar-light bg-white shadow">
-        <div class="container">
-        <img src="../assets/bts.png" width="60" height="60" class="d-inline-block align-top" alt />
+  <div>
+    <div id="loading">
+      <img
+        src="https://thumbs.gfycat.com/SoggyFoolhardyCopperbutterfly-small.gif"
+        alt="loading.."
+        width="300"
+      />
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow">
+      <div class="container">
+        <img src="../assets/img/bts.png" width="60" height="60" class="d-inline-block align-top" alt />
         <a class="navbar-brand ml-3" href="#">
           <h1 class="header-title">BT21</h1>
         </a>
@@ -26,7 +30,7 @@
               <router-link to="/" class="nav-link" exact>Home</router-link>
             </li>
             <li class="nav-item">
-              <router-link to="/shop"  class="nav-link">SHOP</router-link>
+              <router-link to="/shop" class="nav-link">SHOP</router-link>
             </li>
             <li class="nav-item ml-lg-auto">
               <a class="nav-link" href="#/login">
@@ -34,107 +38,113 @@
               </a>
             </li>
           </ul>
-        <div class="d-flex justify-content-end">
-          <div class="btn-group">
-            <button
-              type="button"
-              class="btn btn-white"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              <i class="fas fa-shopping-cart fa-lg"></i>
-              <span class="badge-pill badge-danger badge-revision">{{cart.carts.length}}</span>
-            </button>
-            <div class="dropdown-menu dropdown-menu-right badge-box">
-              <div class="p-2 px-sm-3" v-if="cart.carts !== undefined  &&  cart.carts.length > 0">
-                <h5 class="text-center badge-size">購物車清單</h5>
-                <table class="table mb-2" style="min-width: 305px;">
-                  <tbody>
-                    <tr v-for="(item) in cart.carts" :key="item.id">
-                      <td><a class="text-danger" @click="deletCarts(item.id)"><i class="fas fa-trash-alt"></i></a></td>
-                      <td class="ellipsis"> {{ item.product.title }} </td>
-                      <td> {{ item.qty }}{{ item.product.unit }} </td>
-                      <td> NT{{ item.total }} </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <a href="#/custormerOrder" class="btn btn-dark d-block mb-2">
+          <div class="d-flex justify-content-end">
+            <div class="btn-group">
+              <button
+                type="button"
+                class="btn btn-white"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <i class="fas fa-shopping-cart fa-lg"></i>
+                <span class="badge-pill badge-danger badge-revision">{{ cart.carts.length }}</span>
+              </button>
+              <div class="dropdown-menu dropdown-menu-right badge-box">
+                <div class="p-2 px-sm-3" v-if="cart.carts !== undefined  &&  cart.carts.length > 0">
+                  <h5 class="text-center badge-size">購物車清單</h5>
+                  <table class="table mb-2" style="min-width: 305px;">
+                    <tbody>
+                      <tr v-for="(item) in cart.carts" :key="item.id">
+                        <td>
+                          <a class="text-danger" @click="deletCarts(item.id)">
+                            <i class="fas fa-trash-alt"></i>
+                          </a>
+                        </td>
+                        <td class="ellipsis">{{ item.product.title }}</td>
+                        <td>{{ item.qty }}{{ item.product.unit }}</td>
+                        <td>NT{{ item.total }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <a href="#/custormerOrder" class="btn btn-dark d-block mb-2">
                     <i class="fas fa-cart-arrow-down"></i>
                     結帳去
-                </a>
+                  </a>
+                </div>
+                <div class="p-2 px-sm-3" v-if="cart.carts !== undefined  &&  cart.carts.length < 1">
+                  <h5 class="text-center badge-size">目前沒有商品</h5>
+                </div>
               </div>
-              <div class="p-2 px-sm-3" v-if="cart.carts !== undefined  &&  cart.carts.length < 1">
-                 <h5 class="text-center badge-size">目前沒有商品</h5>
-               </div>  
-            </div>
-           <div class="btn-group">
-            <button
-              type="button"
-              class="btn btn-white"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              <i class="fas fa-heart fa-lg"></i>
-              <span class="badge-pill badge-danger badge-revision" v-if="local">{{local.length}}</span>
-            </button>
-            <div class="dropdown-menu dropdown-menu-right">
-              <div class="pt-2 px-3">
-                <h5 class="text-center badge-size">我的最愛</h5>
-                 <table class="table mb-2" style="min-width: 270px;">
-                  <tbody>
-                    <tr v-for="(item) in local" :key="item.id" class="text-center">
-                      <td><a href="#" style="text-decoration:none; padding: 0.55em;" class="d-block"
-                      @click.prevent="getdetail(item)">{{ item.item_title }}</a></td>
-                    </tr>
-                  </tbody>
-                </table>
+              <div class="btn-group">
+                <button
+                  type="button"
+                  class="btn btn-white"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i class="fas fa-heart fa-lg"></i>
+                  <span class="badge-pill badge-danger badge-revision" v-if="local">{{local.length}}</span>
+                </button>
+                <div class="dropdown-menu dropdown-menu-right">
+                  <div class="pt-2 px-3">
+                    <h5 class="text-center badge-size">我的最愛</h5>
+                    <table class="table mb-2" style="min-width: 270px;">
+                      <tbody>
+                        <tr v-for="(item) in local" :key="item.id" class="text-center">
+                          <td>
+                            <a
+                              href="#"
+                              style="text-decoration:none; padding: 0.55em;"
+                              class="d-block"
+                              @click.prevent="getdetail(item)"
+                            >{{ item.item_title }}</a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          </div>
         </div>
-        </div>
-         </div>
-      </nav>
-   
-    </div>
+      </div>
+    </nav>
+  </div>
 </template>
 
 <script>
 import $ from "jquery";
-import { mapGetters } from 'vuex'
-import { mapActions } from 'vuex'
-
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
-  name: 'Layout',
-  data(){
-    return{
+  name: "Layout",
+  data() {
+    return {};
+  },
+  computed: {
+    ...mapGetters(["cart", "local"])
+  },
+  methods: {
+    getdetail(item) {
+      const vm = this;
+      vm.$router.push(`/detail/${item.item_id}`);
+    },
+
+    ...mapActions(["getCart"]),
+
+    deletCarts(id) {
+      this.$store.dispatch("deletCarts", id);
+    },
+    goCustormer() {
+      const vm = this;
+      vm.$router.push("/custormerOrder");
     }
   },
-  computed:{
-     ...mapGetters(['cart','local'])
-  },
-  methods:{
-      getdetail(item){
-        const vm = this;
-        vm.$router.push(`/detail/${item.item_id}`)
-       },
-       
-      ...mapActions(['getCart']),
-
-      deletCarts(id){
-       this.$store.dispatch('deletCarts', id)
-         },
-      goCustormer(){
-       const vm = this;
-       vm.$router.push("/custormerOrder")
-    },
-  },
-  mounted()  {
+  mounted() {
     this.getCart();
-  },
-}
+  }
+};
 </script>

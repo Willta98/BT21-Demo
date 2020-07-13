@@ -1,8 +1,13 @@
 <template>
   <div>
-       <div id="loading">
-            <img src="https://thumbs.gfycat.com/SoggyFoolhardyCopperbutterfly-small.gif" alt="loading.." width="300">
-        </div>
+    <div id="loading">
+      <img
+        src="https://thumbs.gfycat.com/SoggyFoolhardyCopperbutterfly-small.gif"
+        alt="loading.."
+        width="300"
+      />
+    </div>
+    <div class="content">
     <div class="container">
       <div class="row justify-content-center mt-5">
         <div class="col-5">
@@ -19,12 +24,17 @@
           </ul>
         </div>
       </div>
-      <div class="row justify-content-center mt-5 no-gutters ">
+      <div class="row justify-content-center mt-5 no-gutters">
         <div class="col-12 d-flex justify-content-center">
           <h1 class="cart-text">CART</h1>
         </div>
         <div class="col-12 d-flex justify-content-center">
-          <img src="https://pa1.narvii.com/6754/f71cb711055f2d4d30d7c341f23304515b1a3057_hq.gif" alt="" width="150" height="100">
+          <img
+            src="https://pa1.narvii.com/6754/f71cb711055f2d4d30d7c341f23304515b1a3057_hq.gif"
+            alt
+            width="150"
+            height="100"
+          />
         </div>
         <div class="col-md-6 d-flex justify-content-center title-border">
           <table class="table mt-5 mx-6">
@@ -37,7 +47,11 @@
             <tbody>
               <tr v-for="item in cart.carts" :key="item.id">
                 <td class="align-middle">
-                  <button type="button" class="btn btn-outline-danger btn-sm" @click="deletCarts(item)">
+                  <button
+                    type="button"
+                    class="btn btn-outline-danger btn-sm"
+                    @click="deletCarts(item)"
+                  >
                     <i class="far fa-trash-alt"></i>
                   </button>
                 </td>
@@ -60,24 +74,24 @@
               </tr>
             </tfoot>
           </table>
-           </div>
-         </div>
-       <div class="row  justify-content-center mt-5">
-               <div class="col-md-5">
-                    <div class="input-group mb-3 input-group-sm">
-           <input type="text" class="form-control" placeholder="請輸入優惠碼" v-model="coupon_code">
-             <div class="input-group-append">
-              <button class="btn btn-outline-secondary" type="button" @click="addcoupon">
-                套用優惠碼
-              </button>
-              </div>
-            </div>
-         </div>
         </div>
-        <div class="text-center mb-5">
-            <a href="#/ordercreat" class="btn btn-outline-dark">Creat Order</a>  
-         </div>
-        <div class="footer">
+      </div>
+      <div class="row justify-content-center mt-5">
+        <div class="col-md-5">
+          <div class="input-group mb-3 input-group-sm">
+            <input type="text" class="form-control" placeholder="請輸入優惠碼" v-model="coupon_code" />
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="button" @click="addcoupon">套用優惠碼</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mb-5">
+        <a href="#/ordercreat" class="btn btn-outline-dark">Creat Order</a>
+      </div>
+    </div>
+    </div>
+    <div class="footer">
         <div class="row justify-content-center align-items-center">
           <div class="col-md-4 text-center">
             <img
@@ -124,7 +138,6 @@
           </div>
         </div>
       </div>
-    </div>
   </div>
 </template>
 
@@ -134,48 +147,44 @@ export default {
   data() {
     return {
       cart: {},
-      coupon_code: "",
+      coupon_code: ""
     };
   },
   methods: {
     getCarts() {
       const vm = this;
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`;
-      $("#loading").css('display','block');
-      this.$http.get(url).then(response => {
+      $("#loading").css("display", "block");
+      vm.$http.get(url).then(response => {
         vm.cart = response.data.data;
         // vm.cart.length = vm.cart.carts.length;
-        $("#loading").css('display','none');
-        console.log(vm.cart);
+        $("#loading").css("display", "none");
       });
     },
-    deletCarts(item){
-             const vm = this; 
-             const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${item.id}`;
-             $("#loading").css('display','block');
-             this.$http.delete(url).then((response) =>{
-             console.log("success")
-             vm.getCarts()
-             $("#loading").css('display','none');
-           }); 
-         },
-    addcoupon(){
-             const vm = this;  
-             const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/coupon`;
-             const coupon = {
-                 code: vm.coupon_code
-             }
-             $("#loading").css('display','block');
-             this.$http.post(url, {data: coupon}).then((response) =>{
-             this.getCarts()
-            console.log(response);
-             vm.coupon_code = '';
-             $("#loading").css('display','none');
-            }); 
-         },
-
+    deletCarts(item) {
+      const vm = this;
+      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${item.id}`;
+      $("#loading").css("display", "block");
+      vm.$http.delete(url).then(response => {
+        vm.getCarts();
+        $("#loading").css("display", "none");
+      });
+    },
+    addcoupon() {
+      const vm = this;
+      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/coupon`;
+      const coupon = {
+        code: vm.coupon_code
+      };
+      $("#loading").css("display", "block");
+      vm.$http.post(url, { data: coupon }).then(response => {
+        vm.getCarts();
+        vm.coupon_code = "";
+        $("#loading").css("display", "none");
+      });
+    }
   },
-  mounted(){
+  mounted() {
     let vm = this;
     vm.getCarts();
   }

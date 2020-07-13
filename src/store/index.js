@@ -30,7 +30,6 @@ export default new Vuex.Store({
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${id}`;
       $("#loading").css('display', 'block');
       axios.delete(url).then((response) => {
-        console.log("success")
         context.dispatch('getCart')
         $("#loading").css('display', 'none');
         context.dispatch('updateMessage', { message: "已從購物車移除", status: 'danger' })
@@ -43,7 +42,6 @@ export default new Vuex.Store({
         product_id: id,
         qty
       }
-      console.log('正在連接中')
       axios.post(url, { data: car }).then((response) => {
         context.dispatch('getCart')
         $("#loading").css('display', 'none');
@@ -72,7 +70,6 @@ export default new Vuex.Store({
       state.cart = payload;
     },
     getlocal(state, item) {
-      console.log(item.favItem, item.title, item.id)
       const items = {
         item_favItem: item.favItem,
         item_title: item.title,

@@ -1,14 +1,22 @@
 <template>
   <div>
-     <div id="loading">
-            <img src="https://thumbs.gfycat.com/SoggyFoolhardyCopperbutterfly-small.gif" alt="loading.." width="300">
-        </div>
+    <div id="loading">
+      <img
+        src="https://thumbs.gfycat.com/SoggyFoolhardyCopperbutterfly-small.gif"
+        alt="loading.."
+        width="300"
+      />
+    </div>
+    <div class="content">
     <Navbar></Navbar>
     <div class="container">
       <div class="row no-gutters justify-content-center mt-5 pb-5">
         <div class="col-3">
           <div class="d-flex justify-content-center">
-            <img src="https://media2.giphy.com/media/Kaz4nBr0srkKqOJIxN/giphy.gif" width="100" />
+            <img
+              style="max-width: 100px;"
+              src="https://media2.giphy.com/media/Kaz4nBr0srkKqOJIxN/giphy.gif"
+            />
           </div>
         </div>
         <div class="col-md-9 d-flex align-items-end text-center">
@@ -24,13 +32,17 @@
           </ul>
           <ul class="pl-0" v-for="(item) in Other" :key="item.id">
             <li>
-              <a href="#" class="classify text-decoration-none" @click="productslect(item)">{{ item.name }}</a>
+              <a
+                href="#"
+                class="classify text-decoration-none"
+                @click="productslect(item)"
+              >{{ item.name }}</a>
             </li>
           </ul>
         </div>
         <div class="col-lg-9">
-          <div class="row" v-if="change == true">
-            <div class="col-md-4 mb-4" v-for="item in products" :key="item.id" >
+          <div class="row" v-if="change === true">
+            <div class="col-md-4 mb-4" v-for="item in products" :key="item.id">
               <div class="card border-0 shadow-sm overflow-hidden">
                 <div
                   class="card-img"
@@ -41,59 +53,7 @@
                   <h5 class="card-title">
                     <p class="text-dark">{{ item.title }}</p>
                   </h5>
-                   <span class="badge badge-secondary">{{ item.category }}</span>
-                  <p class="card-text">{{ item.content }}</p>
-                  <div class="d-flex justify-content-between align-items-baseline">
-                    <div class="h5" v-if="!item.price">NT{{ item.origin_price }}</div>
-                    <del class="h6" v-if="item.price">NT{{ item.origin_price }}</del>
-                    <div class="h5" v-if="item.price">NT{{ item.price }}</div>
-                  </div>
-                </div>
-                <div class="card-footer d-flex">
-                  <button
-                    type="button"
-                    class="btn btn-outline-dark btn-sm"
-                    @click="getdetail(item)">
-                    查看更多
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-outline-dark btn-sm ml-auto"
-                    @click="addCar(item.id)">
-                    加到購物車
-                  </button>
-                </div>
-                     <button
-                    type="button"
-                    class="btn btn-dark"
-                    @click="setlocal(item)"
-                    v-if="item.favItem == false">
-                    <i class="far fa-heart fa-2x"></i>
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-warning"
-                    @click="removelocal(item)"
-                    v-if="item.favItem == true">
-                    <i class="fas fa-heart fa-2x"></i>
-                  </button>
-              </div>
-            </div>  
-          </div>
-
-           <div class="row" v-if="change == false">
-            <div class="col-md-4 mb-4" v-for="item in select" :key="item.id" >
-              <div class="card border-0 shadow-sm overflow-hidden">
-                <div
-                  class="card-img"
-                  style="height: 150px; background-size: cover; background-position: center"
-                  :style="{backgroundImage: `url(${item.imageUrl})`}"
-                ></div>
-                <div class="card-body">
-                  <h5 class="card-title">
-                    <p class="text-dark">{{ item.title }}</p>
-                  </h5>
-                   <span class="badge badge-secondary">{{ item.category }}</span>
+                  <span class="badge badge-secondary">{{ item.category }}</span>
                   <p class="card-text">{{ item.content }}</p>
                   <div class="d-flex justify-content-between align-items-baseline">
                     <div class="h5" v-if="!item.price">NT{{ item.origin_price }}</div>
@@ -106,35 +66,88 @@
                     type="button"
                     class="btn btn-outline-dark btn-sm"
                     @click="getdetail(item)"
-                  >
-                    查看更多
-                  </button>
+                  >查看更多</button>
                   <button
                     type="button"
                     class="btn btn-outline-dark btn-sm ml-auto"
-                    @click="addCar(item.id)">
-                    加到購物車
-                  </button>
+                    @click="addCar(item.id)"
+                  >加到購物車</button>
                 </div>
-                    <button
-                    type="button"
-                    class="btn btn-dark"
-                    @click="setlocal(item)"
-                    v-if="item.favItem == false">
-                    <i class="far fa-heart fa-2x"></i>
-                  </button>
-                   <button
-                    type="button"
-                    class="btn btn-warning"
-                     @click="removelocal(item)"
-                    v-if="item.favItem == true">
-                    <i class="fas fa-heart fa-2x"></i>
-                  </button>
+                <button
+                  type="button"
+                  class="btn btn-dark"
+                  @click="setlocal(item)"
+                  v-if="item.favItem === false"
+                >
+                  <i class="far fa-heart fa-2x"></i>
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-warning"
+                  @click="removelocal(item)"
+                  v-if="item.favItem === true"
+                >
+                  <i class="fas fa-heart fa-2x"></i>
+                </button>
               </div>
-            </div>  
+            </div>
+          </div>
+
+          <div class="row" v-if="change === false">
+            <div class="col-md-4 mb-4" v-for="item in select" :key="item.id">
+              <div class="card border-0 shadow-sm overflow-hidden">
+                <div
+                  class="card-img"
+                  style="height: 150px; background-size: cover; background-position: center"
+                  :style="{backgroundImage: `url(${item.imageUrl})`}"
+                ></div>
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <p class="text-dark">{{ item.title }}</p>
+                  </h5>
+                  <span class="badge badge-secondary">{{ item.category }}</span>
+                  <p class="card-text">{{ item.content }}</p>
+                  <div class="d-flex justify-content-between align-items-baseline">
+                    <div class="h5" v-if="!item.price">NT{{ item.origin_price }}</div>
+                    <del class="h6" v-if="item.price">NT{{ item.origin_price }}</del>
+                    <div class="h5" v-if="item.price">NT{{ item.price }}</div>
+                  </div>
+                </div>
+                <div class="card-footer d-flex">
+                  <button
+                    type="button"
+                    class="btn btn-outline-dark btn-sm"
+                    @click="getdetail(item)"
+                  >查看更多</button>
+                  <button
+                    type="button"
+                    class="btn btn-outline-dark btn-sm ml-auto"
+                    @click="addCar(item.id)"
+                  >加到購物車</button>
+                </div>
+                <button
+                  type="button"
+                  class="btn btn-dark"
+                  @click="setlocal(item)"
+                  v-if="item.favItem === false"
+                >
+                  <i class="far fa-heart fa-2x"></i>
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-warning"
+                  @click="removelocal(item)"
+                  v-if="item.favItem === true"
+                >
+                  <i class="fas fa-heart fa-2x"></i>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+    </div>
+   </div> 
      <div class="footer">
         <div class="row justify-content-center align-items-center">
           <div class="col-md-4 text-center">
@@ -143,7 +156,8 @@
               width="60"
               height="60"
               class="d-inline-block align-top"
-              alt/>
+              alt
+            />
             <div class="navbar-brand">
               <h1 class="font-weight-bold">BT21</h1>
             </div>
@@ -181,87 +195,83 @@
           </div>
         </div>
       </div>
-    </div>
   </div>
 </template>
 <script>
-import Navbar from "../components/Navbar";
+import Navbar from "../../components/Navbar";
 import $ from "jquery";
 export default {
- data() {
+  data() {
     return {
-      temp:[],
+      temp: [],
       cart: {
-        length:""
+        length: ""
       },
-      products: [
-      ],
+      products: [],
       select: [],
       change: true,
       classify: [{ all: "ALL" }],
       Other: [
+        { name: "Hot ltem" },
         { name: "Apparel" },
         { name: "Footwear" },
         { name: "Accessories" },
         { name: "Others" }
-      ],
+      ]
     };
   },
   methods: {
-        getProducts() {
+    getProducts() {
       const vm = this;
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`;
-      vm.change = true ;
-      $("#loading").css('display','block'); 
-      this.$http.get(url).then(response => {
+      vm.change = true;
+      $("#loading").css("display", "block");
+      vm.$http.get(url).then(response => {
         vm.products = response.data.products;
-        vm.products.forEach((el)=> {
-          vm.$set(el,"favItem",false)
-         })
-          
-       let localdata = JSON.parse(localStorage.getItem("items") || '[]')
-       let localtitle = ''
-       localdata.forEach(item =>{
-       localtitle = item.item_title
-       console.log(localtitle)
-        vm.products.forEach(item =>{
-          if (localtitle == item.title) {
-            item.favItem = true ;
-          }
-         })
-        })
-       console.log(vm.products)
-         $("#loading").css('display','none'); 
+        vm.products.forEach(el => {
+          vm.$set(el, "favItem", false);
+        });
+
+        let localdata = JSON.parse(localStorage.getItem("items") || "[]");
+        let localtitle = "";
+        localdata.forEach(item => {
+          localtitle = item.item_title;
+          vm.products.forEach(item => {
+            if (localtitle == item.title) {
+              item.favItem = true;
+            }
+          });
+        });
+        $("#loading").css("display", "none");
       });
     },
-    getdetail(item){
-       const vm = this;
-       vm.$router.push(`/detail/${item.id}`)
-    },
-    productslect(item){
+    getdetail(item) {
       const vm = this;
-      vm.change = false
-      let select = vm.products.filter(items =>{
-        return items.category == item.name
-      })
-      vm.select = select
-      console.log(vm.select)
+      vm.$router.push(`/detail/${item.id}`);
     },
-     addCar(id , qty = 1){
-        this.$store.dispatch('addCar', { id , qty });
-     },  
-    setlocal(item){
+    productslect(item) {
+      const vm = this;
+      vm.change = false;
+      let select = vm.products.filter(items => {
+        return items.category == item.name;
+      });
+      vm.select = select;
+    },
+    addCar(id, qty = 1) {
+      this.$store.dispatch("addCar", { id, qty });
+    },
+    setlocal(item) {
       if (item.favItem == false) {
-        item.favItem = true
+        item.favItem = true;
       }
-        this.$store.dispatch('setlocal', item);
+      this.$store.dispatch("setlocal", item);
     },
-    removelocal(item){
+    removelocal(item) {
       if (item.favItem == true) {
-        item.favItem = false
+        item.favItem = false;
       }
-        this.$store.dispatch('remove', item);
-    },
+      this.$store.dispatch("remove", item);
+    }
   },
   components: {
     Navbar

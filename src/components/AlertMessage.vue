@@ -12,26 +12,24 @@
         class="close"
         @click="removeMessage(i)"
         aria-label="Close"
-      >
-      </button>
+      ></button>
     </div>
   </div>
 </template>
 
 <script>
- export default {
-   data () {
-     return {
-     }
-   },
-    methods: {
-    updateMessage (message, status) {
-      this.$store.dispatch('updateMessage', { message, status })
-    },
+export default {
+  data() {
+    return {};
+  },
+  methods: {
+    updateMessage(message, status) {
+      this.$store.dispatch("updateMessage", { message, status });
+    }
   },
   computed: {
-    messages () {
-      return this.$store.state.messages
+    messages() {
+      return this.$store.state.messages;
     }
   },
   mounted() {
@@ -39,7 +37,7 @@
     const status = "";
     const vm = this;
     vm.updateMessage(message, status);
-  },
+  }
 };
 </script>
 
