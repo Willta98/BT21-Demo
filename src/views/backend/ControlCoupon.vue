@@ -10,6 +10,7 @@
     <div class="text-right mt-4">
       <button class="btn btn-primary" @click="openmodel(true)">Create New</button>
     </div>
+   <div class="table-responsive-md">
     <table class="table mt-4">
       <thead>
         <tr>
@@ -44,7 +45,8 @@
           </td>
         </tr>
       </tbody>
-    </table>
+     </table>
+    </div>
     <Pagination :pages="pagination" @emitPages="getCoupons"></Pagination>
 
     <div
