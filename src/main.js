@@ -1,22 +1,23 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
-import axios from 'axios'
-import VueAxios from 'vue-axios'
-import 'bootstrap'
+import Vue from 'vue';
+import axios from 'axios';
+import VueAxios from 'vue-axios';
+import 'bootstrap';
 import VeeValidate from 'vee-validate';
 import zhTW from 'vee-validate/dist/locale/zh_TW';
-import currencyFilter from './components/filters/currency';
-import timeFilter from './components/filters/time';
-import store from './store'
-Vue.config.productionTip = false
+import App from './App.vue';
+import router from './router';
+import currencyFilter from './filters/currency';
+import timeFilter from './filters/time';
+import store from './store';
+
+Vue.config.productionTip = false;
 
 Vue.use(VueAxios, axios);
 Vue.use(VeeValidate);
 VeeValidate.Validator.localize('zhTW', zhTW);
 
-Vue.filter('time', timeFilter)
-Vue.filter('currency', currencyFilter)
+Vue.filter('time', timeFilter);
+Vue.filter('currency', currencyFilter);
 
 axios.defaults.withCredentials = true;
 
@@ -26,29 +27,23 @@ new Vue({
   components: { App },
   template: '<App/>',
   store,
-  render: h => h(App)
-}).$mount('#app')
-
+  render: (h) => h(App),
+}).$mount('#app');
 
 router.beforeEach((to, from, next) => {
-  console.log('to', to, 'form', from, 'next', next)
-
+  // console.log('to', to, 'form', from, 'next', next)
   if (to.meta.requiresAuth) {
     const api = `${process.env.VUE_APP_APIPATH}/api/user/check`;
     axios.post(api).then((response) => {
-      console.log(response.data)
       if (response.data.success) {
-        console.log('目前正在登入中')
         next();
-      }
-      else {
+      } else {
         next({
-          path: '/login'
-        })
+          path: '/login',
+        });
       }
-    })
-
+    });
   } else {
     next();
   }
-})
+});

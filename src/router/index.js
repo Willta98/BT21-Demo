@@ -1,27 +1,30 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Main from '@/views/Main'
-import Shop from '@/views/Shop'
-import Login from '@/views/Login'
-import Control from '@/views/Control'
-import Order from '@/views/ControlOrder'
-import Coupon from '@/views/ControlCoupon'
-import Product from '@/views/ControlProduct'
-import product from '@/views/Product'
-import custormerOrder from '@/views/CustormerOrder'
-import ordercreat from '@/views/Ordercreat'
-import checkorder from '@/views/Checkorder'
+import Vue from 'vue';
+import Router from 'vue-router';
+import Main from '@/views/frontend/Main.vue';
+import Shop from '@/views/frontend/Shop.vue';
+import Login from '@/views/frontend/Login.vue';
+import Control from '@/views/frontend/Control.vue';
+import Order from '@/views/backend/ControlOrder.vue';
+import Coupon from '@/views/backend/ControlCoupon.vue';
+import Product from '@/views/backend/ControlProduct.vue';
+import product from '@/views/frontend/Product.vue';
+import custormerOrder from '@/views/frontend/CustormerOrder.vue';
+import ordercreat from '@/views/frontend/Ordercreat.vue';
+import checkorder from '@/views/frontend/Checkorder.vue';
 
-
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
   linkActiveClass: 'active',
   routes: [
     {
+      path: '*',
+      redirect: '/',
+    },
+    {
       path: '/',
       name: 'Main',
-      component: Main
+      component: Main,
     },
     {
       path: '/shop',
@@ -31,12 +34,12 @@ export default new Router({
     {
       path: '/login',
       name: 'Login',
-      component: Login
+      component: Login,
     },
     {
       path: '/detail/:itemID',
       name: 'oneproduct',
-      component: product
+      component: product,
     },
     {
       path: '/control',
@@ -48,21 +51,21 @@ export default new Router({
           path: 'product',
           name: 'product',
           component: Product,
-          meta: { requiresAuth: true }
+          meta: { requiresAuth: true },
         },
         {
           path: 'order',
           name: 'order',
           component: Order,
-          meta: { requiresAuth: true }
+          meta: { requiresAuth: true },
         },
         {
           path: 'coupon',
           name: 'coupon',
           component: Coupon,
-          meta: { requiresAuth: true }
-        }
-      ]
+          meta: { requiresAuth: true },
+        },
+      ],
     },
     {
       path: '/custormerOrder',
@@ -79,8 +82,8 @@ export default new Router({
       name: 'checkorder',
       component: checkorder,
     },
-  ]
-})
+  ],
+});
 
 // const router = new VueRouter({
 //   routes

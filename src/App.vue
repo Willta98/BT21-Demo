@@ -7,16 +7,16 @@
 </template>
 
 <script>
-import Alert from "./components/AlertMessage";
-import $ from "jquery";
+// import $ from 'jquery';
+import Alert from './components/AlertMessage.vue';
 
 export default {
- components: {
+  components: {
     Alert,
   },
 };
 </script>
 
 <style lang="scss">
-@import "~@/assets/all.scss"
+@import "~@/assets/all.scss";
 </style>
