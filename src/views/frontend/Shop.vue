@@ -16,7 +16,7 @@
             <img
               src="https://media2.giphy.com/media/Kaz4nBr0srkKqOJIxN/giphy.gif"
               width="100"
-              height="100"
+              height="120"
             />
           </div>
         </div>
