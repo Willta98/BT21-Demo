@@ -206,7 +206,7 @@
                     ></div>
                     <div class="card-body">
                       <h5 class="card-title">{{ item.title }}</h5>
-                      <a href="#" class="btn btn-primary mt-5" @click="getdetail(item)">查看更多</a>
+                      <a href="#" class="btn btn-primary mt-6" @click="getdetail(item)">查看更多</a>
                     </div>
                   </div>
                 </div>
