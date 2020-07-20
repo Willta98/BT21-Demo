@@ -14,8 +14,9 @@
         <div class="col-3">
           <div class="d-flex justify-content-center">
             <img
-              style="max-width: 100px;"
               src="https://media2.giphy.com/media/Kaz4nBr0srkKqOJIxN/giphy.gif"
+              width="100"
+              height="100"
             />
           </div>
         </div>
@@ -237,9 +238,10 @@ export default {
         let localtitle = '';
         localdata.forEach((item) => {
           localtitle = item.item_title;
-          vm.products.forEach((item) => {
-            if (localtitle === item.title) {
-              item.favItem = true;
+          vm.products.forEach((items) => {
+            if (localtitle === items.title) {
+              const itemt = items;
+              itemt.favItem = true;
             }
           });
         });
@@ -261,13 +263,15 @@ export default {
     },
     setlocal(item) {
       if (item.favItem === false) {
-        item.favItem = true;
+        const itemt = item;
+        itemt.favItem = true;
       }
       this.$store.dispatch('setlocal', item);
     },
     removelocal(item) {
       if (item.favItem === true) {
-        item.favItem = false;
+        const itemt = item;
+        itemt.favItem = false;
       }
       this.$store.dispatch('remove', item);
     },
