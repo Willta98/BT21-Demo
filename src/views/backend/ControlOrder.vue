@@ -7,7 +7,8 @@
         width="300"
       />
     </div>
-    <table class="table mt-5">
+    <div class="table-responsive-md">
+     <table class="table mt-5 table-coupon">
       <thead>
         <tr>
           <th scope="col" width="60">購買時間</th>
@@ -38,7 +39,8 @@
           </td>
         </tr>
       </tbody>
-    </table>
+     </table>
+    </div>
     <Pagination :pages="pagination" @emitPages="getOrder"></Pagination>
   </div>
 </template>

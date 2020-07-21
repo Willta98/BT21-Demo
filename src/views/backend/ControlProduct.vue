@@ -10,7 +10,8 @@
     <div class="text-right mt-4">
       <button class="btn btn-primary" @click="openModel(true)">Create New</button>
     </div>
-    <table class="table mt-4">
+    <div class="table-responsive-md">
+     <table class="table mt-4 table-coupon">
       <thead>
         <tr>
           <th width="120">分類</th>
@@ -41,8 +42,8 @@
           </td>
         </tr>
       </tbody>
-    </table>
-
+     </table>
+    </div>
     <Pagination :pages="pagination" @emitPages="getproducts"></Pagination>
 
     <div

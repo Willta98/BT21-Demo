@@ -11,7 +11,7 @@
       <button class="btn btn-primary" @click="openmodel(true)">Create New</button>
     </div>
    <div class="table-responsive-md">
-    <table class="table mt-4">
+    <table class="table mt-4 table-coupon">
       <thead>
         <tr>
           <th scope="col" width="120">名稱</th>
