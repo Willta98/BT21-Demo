@@ -87,7 +87,7 @@
                 <iframe
                   style="box-shadow: 3px 9px 6px 2px #C0C0C0;"
                   class="move-left"
-                  width="500"
+                  width="450"
                   height="315"
                   src="https://www.youtube.com/embed/LMxze55_c3E"
                   frameborder="0"
@@ -100,7 +100,7 @@
                 <iframe
                   style="box-shadow: 3px 9px 6px 2px #C0C0C0;"
                   class="move-right"
-                  width="500"
+                  width="450"
                   height="315"
                   src="https://www.youtube.com/embed/6_wyS38cqXc"
                   frameborder="0"
@@ -130,7 +130,7 @@
                 <iframe
                   style="box-shadow: 3px 9px 6px 2px #C0C0C0;"
                   class="move-left"
-                  width="500"
+                  width="450"
                   height="315"
                   src="https://www.youtube.com/embed/5Wn85Ge22FQ"
                   frameborder="0"
@@ -143,7 +143,7 @@
                 <iframe
                   class="move-right"
                   style="box-shadow: 3px 9px 6px 2px #C0C0C0;"
-                  width="500"
+                  width="450"
                   height="315"
                   src="https://www.youtube.com/embed/jjskoRh8GTE"
                   frameborder="0"
