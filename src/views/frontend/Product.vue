@@ -35,7 +35,8 @@
                <button class="p-less" @click="less()">
                   <i aria-hidden="true" class="fas fa-minus" style="margin-right: 3px;"></i>
                </button>
-               <input type="number" max="10" min="1" class="p-input" v-model="product.num" />
+               <input type="number" max="10" min="1" class="p-input" v-model="product.num"
+                style="border-radius: 0px;">
                 <button class="p-add" @click="add()">
                 <i aria-hidden="true" class="fas fa-plus"></i>
                 </button>
