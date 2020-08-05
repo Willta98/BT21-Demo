@@ -31,13 +31,15 @@
                     {{ product.content }}</li>
                 </ul>
               </div>
-              <button class="p-less" @click="less()">
+              <div class="newBtn">
+               <button class="p-less" @click="less()">
                 <i aria-hidden="true" class="fas fa-minus"></i>
-              </button>
-              <input type="number" max="10" min="1" class="p-input" v-model="product.num" />
-              <button class="p-add" @click="add()">
+               </button>
+               <input type="number" max="10" min="1" class="p-input" v-model="product.num" />
+                <button class="p-add" @click="add()">
                 <i aria-hidden="true" class="fas fa-plus"></i>
-              </button>
+                </button>
+              </div>
               <div class="mt-5">
                 <h5>Price: {{product.price}}NTD/1{{product.unit}}</h5>
               </div>
