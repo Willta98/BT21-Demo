@@ -377,7 +377,6 @@ export default {
       vm.$http.get(url).then((response) => {
         const { products } = response.data;
         vm.hotitem = products.filter((item) => item.category === 'Hot ltem');
-        console.log(vm.hotitem);
         $('#loading').css('display', 'none');
       });
     },
