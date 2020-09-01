@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="content">
-      <Navbar></Navbar>
+      <Navbar :product="products"></Navbar>
       <div class="container">
         <div id="carouselExampleIndicators" class="carousel slide mb-5 mt-5" data-ride="carousel">
           <ol class="carousel-indicators">
@@ -367,9 +367,34 @@ export default {
         },
       },
       hotitem: [],
+      products: [],
     };
   },
   methods: {
+    getitems() {
+      const vm = this;
+      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`;
+      $('#loading').css('display', 'block');
+      vm.$http.get(url).then((response) => {
+        vm.products = response.data.products;
+        vm.products.forEach((el) => {
+          vm.$set(el, 'favItem', false);
+        });
+
+        const localdata = JSON.parse(localStorage.getItem('items') || '[]');
+        let localtitle = '';
+        localdata.forEach((item) => {
+          localtitle = item.item_title;
+          vm.products.forEach((items) => {
+            if (localtitle === items.title) {
+              const itemt = items;
+              itemt.favItem = true;
+            }
+          });
+        });
+        $('#loading').css('display', 'none');
+      });
+    },
     getProducts() {
       const vm = this;
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`;
@@ -401,6 +426,13 @@ export default {
       });
       vm.form.user.email = '';
     },
+    removelocal(item) {
+      if (item.favItem === true) {
+        const itemt = item;
+        itemt.favItem = false;
+      }
+      this.$store.dispatch('remove', item);
+    },
     copy() {
       const clipboard = new Clipboard('.tag-read');
       const vm = this;
@@ -423,6 +455,7 @@ export default {
 
   // },
   mounted() {
+    this.getitems();
     this.getProducts();
     $(window).scroll(() => {
       const scrollPos = $(window).scrollTop();
